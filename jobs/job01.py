@@ -13,7 +13,7 @@ class CreateSite(Job):
         description = "The job creates a new site using the random string"
         read_only = False
 
-    delay = IntegerVar(description="Number of seconds to wait before starting the job.", label="Delay", min_value=0, max_value=300, default=0)
+    delay = IntegerVar(description="Number of seconds to wait before starting the job.", label="Delay", min_value=0, max_value=300, default=0, required=False)
 
     def run(self, data=None, commit=None):
         site_name = ''.join(random.choices(string.ascii_lowercase, k=10))
