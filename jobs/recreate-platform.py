@@ -15,7 +15,7 @@ class RecreatePlatform(Job):
 
         self.logger.info("The job started.")
 
-        for i in range(1000):
+        for i in range(100):
             p = Platform.objects.first()
 
             name = p.name
