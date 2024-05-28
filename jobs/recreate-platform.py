@@ -1,4 +1,5 @@
 
+import random
 from nautobot.dcim.models.devices import Platform
 from nautobot.apps.jobs import Job, register_jobs
 
@@ -14,7 +15,16 @@ class RecreatePlatform(Job):
 
         self.logger.info("The job started.")
 
-        for p in Platform.objects.all():
+        self.logger.info("Get all platforms.")
+        platforms = Platform.objects.all()
+        max_number = len(platforms)
+        self.logger.info("Number of platforms: %s", max_number)
+
+
+        for i in range(1000):
+            random_number = random.randint(0, max_number)
+            p = platforms[random_number]
+
             name = p.name
             self.logger.info("Processing the platform %s.", name)
 
