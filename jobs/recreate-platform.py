@@ -12,32 +12,31 @@ class RecreatePlatform(Job):
 
     def run(self):
 
-        logger.info("The job started.")
+        self.logger.info("The job started.")
 
-
-        logger.info("Get the platform.")
+        self.logger.info("Get the platform.")
         p = Platform.objects.first()
         name = p.name
 
-        logger.info("Delete the platform %s", name)
+        self.logger.info("Delete the platform %s", name)
         p.delete()
-        logger.info("Deleted.")
+        self.logger.info("Deleted.")
 
         try:
             p1 = Platform.objects.get(name=name)
-            logger.info("The platform %s found.", name)
+            self.logger.info("The platform %s found.", name)
         except:
-            logger.info("The platform %s not found.", name)
+            self.logger.info("The platform %s not found.", name)
 
         p.save()
 
         try:
             p1 = Platform.objects.get(name=name)
-            logger.info("The platform %s found.", name)
+            self.logger.info("The platform %s found.", name)
         except:
-            logger.info("The platform %s not found.", name)
+            self.logger.info("The platform %s not found.", name)
 
-        logger.info("The job completed.")
+        self.logger.info("The job completed.")
 
 
 register_jobs(RecreatePlatform)
