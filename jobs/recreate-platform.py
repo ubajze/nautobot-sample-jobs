@@ -32,15 +32,16 @@ class RecreatePlatform(Job):
                 self.logger.info("The platform %s not found.", name)
 
             self.logger.info("Recreating the platform.")
-            p.name = name.replace("platform", "s-platform")
+            new_name = name.replace("platform", "s-platform")
+            p.name = new_name
             p.save()
             self.logger.info("Done")
 
             try:
-                p1 = Platform.objects.get(name=name)
-                self.logger.info("The platform %s found.", name)
+                p1 = Platform.objects.get(name=new_name)
+                self.logger.info("The platform %s found.", new_name)
             except:
-                self.logger.info("The platform %s not found.", name)
+                self.logger.info("The platform %s not found.", new_name)
 
         self.logger.info("The job completed.")
 
