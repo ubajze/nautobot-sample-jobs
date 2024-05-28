@@ -1,15 +1,6 @@
 
 from nautobot.dcim.models.devices import Platform
-
 from nautobot.apps.jobs import Job, register_jobs
-
-
-import random
-import string
-import time
-from nautobot.extras.jobs import Job, IntegerVar
-from nautobot.extras.models import Status
-from nautobot.dcim.models import Site
 
 class RecreatePlatform(Job):
 
