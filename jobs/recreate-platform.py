@@ -14,27 +14,29 @@ class RecreatePlatform(Job):
 
         self.logger.info("The job started.")
 
-        self.logger.info("Get the platform.")
-        p = Platform.objects.first()
-        name = p.name
+        for p in Platform.objects.all():
+            name = p.name
+            self.logger.info("Processing the platform %s.", name)
 
-        self.logger.info("Delete the platform %s", name)
-        p.delete()
-        self.logger.info("Deleted.")
+            self.logger.info("Delete the platform %s", name)
+            p.delete()
+            self.logger.info("Deleted.")
 
-        try:
-            p1 = Platform.objects.get(name=name)
-            self.logger.info("The platform %s found.", name)
-        except:
-            self.logger.info("The platform %s not found.", name)
+            try:
+                p1 = Platform.objects.get(name=name)
+                self.logger.info("The platform %s found.", name)
+            except:
+                self.logger.info("The platform %s not found.", name)
 
-        p.save()
+            self.logger.info("Recreating the platform.")
+            p.save()
+            self.logger.info("Done")
 
-        try:
-            p1 = Platform.objects.get(name=name)
-            self.logger.info("The platform %s found.", name)
-        except:
-            self.logger.info("The platform %s not found.", name)
+            try:
+                p1 = Platform.objects.get(name=name)
+                self.logger.info("The platform %s found.", name)
+            except:
+                self.logger.info("The platform %s not found.", name)
 
         self.logger.info("The job completed.")
 
