@@ -15,15 +15,8 @@ class RecreatePlatform(Job):
 
         self.logger.info("The job started.")
 
-        self.logger.info("Get all platforms.")
-        platforms = Platform.objects.all()
-        max_number = len(platforms)
-        self.logger.info("Number of platforms: %s", max_number)
-
-
         for i in range(1000):
-            random_number = random.randint(0, max_number)
-            p = platforms[random_number]
+            p = Platform.objects.first()
 
             name = p.name
             self.logger.info("Processing the platform %s.", name)
@@ -39,6 +32,7 @@ class RecreatePlatform(Job):
                 self.logger.info("The platform %s not found.", name)
 
             self.logger.info("Recreating the platform.")
+            p.name = name.replace("platform", "s-platform")
             p.save()
             self.logger.info("Done")
 
