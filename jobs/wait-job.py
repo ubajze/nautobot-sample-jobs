@@ -19,11 +19,11 @@ class WaitJob(jobs.Job):
         max_value=3600,
     )
 
-    def run(self):
+    def run(self, *, wait_time):
 
         self.logger.info("The job started.")
 
-        for i in range(self.wait_time):
+        for i in range(wait_time):
             self.logger.info("Waiting for %s seconds.", i + 1)
             time.sleep(1)
 
