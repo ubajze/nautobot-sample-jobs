@@ -11,7 +11,7 @@ class WebRequest(jobs.Job):
 
         read_only = False
 
-    url = jobs.URLVar(
+    url = jobs.TextVar(
         description="The URL to perform the web request to",
         default="https://example.com",
     )
