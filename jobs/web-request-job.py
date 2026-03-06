@@ -1,3 +1,4 @@
+import sys
 import requests
 from nautobot.apps import jobs
 
@@ -27,6 +28,7 @@ class WebRequest(jobs.Job):
             self.logger.info("The response content is %s.", response.text)
         except Exception as e:
             self.logger.error("An error occurred while performing the web request: %s", str(e))
+            sys.exit(1)
 
         self.logger.info("The job completed.")
 
