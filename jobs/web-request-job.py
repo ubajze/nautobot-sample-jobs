@@ -23,7 +23,7 @@ class WebRequest(jobs.Job):
 
         self.logger.info("Performing a web request to %s.", url)
         try:
-            response = requests.get(url)
+            response = requests.get(url, verify=False)
             self.logger.info("The response status code is %s.", response.status_code)
             self.logger.info("The response content is %s.", response.text)
         except Exception as e:
